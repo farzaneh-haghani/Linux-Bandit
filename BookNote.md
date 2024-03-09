@@ -64,3 +64,52 @@ We use hexadecimal just to help us in convert decimal to binary faster because i
   - `Text editor program` may assume the data is text.
   - `Image viewer` may assume it is the color of a pixel in an image.
   - `calculator` may assume it is a number.
+
+<br/>
+<br/>
+
+# Chapter 7: COMPUTER HARDWARE
+
+- `CPU`: CENTRAL PROCESSING UNIT
+- `RAM`: Random Access Memory
+- `SRAM`: Static Random Access Memory (a type of flip-flop which keep bites while power is connected)
+- `DRAM`: Dynamic Random Access Memory (using a transistor and a capacitor)
+
+  - The capacitor’s charge `leaks` over time, so data must be `rewritten` to the cells.
+  - This refreshing of the memory cells is what makes DRAM `dynamic`.
+
+  #### SRAM vs DRAM:
+
+  - `DRAM` is low price so commonly used
+  - `SRAM` is faster but expensive so used for `cache memory` which speed is important.
+
+### Memory address
+
+- RAM is grids of memory cells and the location of each single bit cell in a grid can be identified using two-dimensional coordinates.
+- RAM accesses multiple grids of 1-bit memory cells in parallel, allowing for reads or writes of multiple bits at once.
+- Each memory address is the location of `8 bits or a byte of data` in memory means only stores 1 byte (e.g. one ASCII code).
+
+  #### Computers with 64KB of memory:
+
+  1. 64KB RAM = 64 \* (2 ^ 10) = 64 \* 1024= 65,536 B
+  2. To find the range of memory addresses or how many bits need, we calculate `count combination`
+  3. 2 ^ n = 65,536 ===> n = log2(65,536) = 16 (base-2 logarithm)
+  4. 16 bits are required for unique memory addresses
+
+  - From 0 (decimal) or 0000 (hex) or 0000 0000 0000 0000 (bits)
+  - To 65,535 (decimal) or FFFF (hex) or 1111 1111 1111 1111 (bits)
+
+### Instruction Set Architectures (ISA)
+
+- ISA is a model of how a CPU works.
+
+1. `x86`: naming by Intel uses for computers, laptop, servers
+
+   - Intel processors: 8086, 80186, 80286, 80386, 80486, Pentium and Celeron.
+   - Software developed for an older x86 CPU runs on a newer x86 CPU, but software built for a newer x86 CPU that takes advantage of new x86 instructions won’t be able to run on older x86 CPUs that don’t understand the new instructions.
+   - The x86 architecture has been 16-bit, 32-bit, and 64-bit.
+   - A 32-bit CPU has 32-bit `registers`, a 32-bit `address bus`, or a 32-bit `data bus` and can operate on values that are 32 bits in length.
+
+2. `ARM`: uses for smartphones and tablets because of reduced power consumption and lower cost as compared to x86.
+
+   - To be used in system- on-chip (SoC ) designs, where a single integrated circuit contains not only a CPU, but also memory and other hardware.
