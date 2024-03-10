@@ -35,3 +35,15 @@
 #### Level 7
 
 - grep "millionth" data.txt
+
+#### Level 8
+
+- sort data.txt | uniq -u
+
+#### Level 9
+
+- strings data.txt | grep "="
+
+#### Level 10
+
+- base64 -d data.txt
