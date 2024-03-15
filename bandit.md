@@ -101,3 +101,43 @@ mv data8.bin data8.bin.gz
 gzip -d data8.bin.gz
 cat data8.bin
 ```
+
+#### Level 13
+
+```sh
+ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+
+```
+
+#### Level 14
+
+```sh
+cat /etc/bandit_pass/bandit14
+nc localhost 30000
+fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+```
+
+#### Level 15
+
+```sh
+openssl s_client -connect localhost:30001
+jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+```
+
+#### Level 16
+
+```sh
+nmap -p 31000-32000 localhost
+openssl s_client -connect localhost:31790
+JQttfApK4SeyHwDlI9SXGR50qclOAil1
+```
+
+#### Level 17
+
+```sh
+nano private.pem   //past the private key
+chmod 400 private.pem
+ssh -i private.pem bandit17@bandit.labs.overthewire.org -p 2220
+diff passwords.old passwords.new
+
+```
