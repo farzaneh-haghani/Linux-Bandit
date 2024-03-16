@@ -139,5 +139,24 @@ nano private.pem   //past the private key
 chmod 400 private.pem
 ssh -i private.pem bandit17@bandit.labs.overthewire.org -p 2220
 diff passwords.old passwords.new
+```
 
+#### Level 18
+
+```sh
+ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+```
+
+#### Level 19
+
+```sh
+ ./bandit20-do cat /etc/bandit_pass/bandit20
+```
+
+#### Level 20
+
+```sh
+nc -lvp 3000       //first window
+./suconnect 3000   //second window
+VxCazJaVykI6W36BkBU0mJTCM8rR95XT    //first window
 ```
