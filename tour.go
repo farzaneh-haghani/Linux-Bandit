@@ -37,6 +37,74 @@ func main() {
 	fmt.Println(a, b,c)
 
 	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
+
+	// 7/3 => 2
+	// 7.0/3.0 => 2.3333333333333335
+	fmt.Println(7.0/3.0)  
+
+	var x int
+	if _,err:=fmt.Scanf("%d",&x); err!=nil {
+		fmt.Println("Error",err)
+		return
+	}
+		// _,err :=fmt.Scanf("%d",&input)
+	// if err!=nil{
+	// 	fmt.Println("Error",err)
+	// 	return
+	// }
+
+	if x>10{
+		j:=0
+		for j<1{
+			fmt.Println("passed")
+			j++
+		}
+	}else{
+		for i:=0;i<x;i++{
+		fmt.Println("failed")
+		}
+	}
+
+	// var input any="Hi"
+	var input interface{}=15
+	switch t:=input.(type){    //type inferred
+	case string:
+		fmt.Println(input.(string))
+		fmt.Println(t)
+	case int:
+		fmt.Println(input.(int) + 10)    // casting type
+		fmt.Println(t + 10) 
+	default:
+		fmt.Println("unknown",t)
+	}
+
+	name:="Farzaneh"
+	switch name{
+	case "Farzaneh":
+		fmt.Println(name,"Haghani")
+		fallthrough                    // Run next case as well
+	case "CYF":
+		fmt.Println("Trainee")
+	}
+
+	arr:=[5]int{   // Array can not be resized
+		1,2,3,    //Array fills 0 for the rest
+	}
+	fmt.Println(arr)
+
+	// slice:=[]int{   
+	// 	1,2,3,
+	// }
+	slice:=make([]string,0,2)
+	slice = append(slice, "a","b","c")
+	fmt.Println(slice)
+	fmt.Println(cap(slice))      // Capacity will be double if we append more
+	fmt.Println(len(slice))
+
+	slice=append(slice[1:],slice...)
+	slice=append(slice[:1],slice[1:]...)
+	fmt.Println(slice)
+
 }
 
 
