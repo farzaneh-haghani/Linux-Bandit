@@ -1,12 +1,48 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
 	"math/cmplx"
 	"math/rand"
 	"time"
 )
+
+type Worker interface{
+	Name() string        // method Name
+}
+
+type Teacher struct{
+	name string
+	className string
+}
+
+type Student struct{
+	name string
+	grade int
+}
+
+func (t Teacher) Name() string{
+	return t.name
+}
+
+func Greeting(w Worker){
+	fmt.Printf("Hello %s\n",w.Name())
+}
+
+type Person struct{
+	Name string
+	Age int
+}
+
+func age(p *Person){    // Function
+	p.Age++
+}
+
+func (p *Person)changeName(name string){  // Method
+	p.Name=name
+}
 
 // We need var because it is outside a function
 var	(
@@ -17,6 +53,13 @@ var	(
 
 
 func main() {
+	t:=Teacher{name: "Farzaneh"}
+	Greeting(t)
+	p:= Person{Name:"Farzaneh",Age:37}
+	age(&p)
+	p.changeName("Rojina")
+	fmt.Println(p)
+
 	g := 0.867 + 0.5i // complex128
 	d:=g   //  d's type is inferred from g
 	fmt.Printf("%T \n",d)
@@ -47,7 +90,7 @@ func main() {
 		fmt.Println("Error",err)
 		return
 	}
-		// _,err :=fmt.Scanf("%d",&input)
+	// _,err :=fmt.Scanf("%d",&input)
 	// if err!=nil{
 	// 	fmt.Println("Error",err)
 	// 	return
@@ -72,7 +115,7 @@ func main() {
 		fmt.Println(input.(string))
 		fmt.Println(t)
 	case int:
-		fmt.Println(input.(int) + 10)    // casting type
+		fmt.Println(input.(int) + 10)    // casting type - only when we change from any / interface (unknown type) to int / string ... (known type)
 		fmt.Println(t + 10) 
 	default:
 		fmt.Println("unknown",t)
@@ -92,9 +135,25 @@ func main() {
 	}
 	fmt.Println(arr)
 
-	// slice:=[]int{   
-	// 	1,2,3,
-	// }
+	s:=[]int{   
+		1,2,3,4,5,
+	}
+	for i:=0 ; i<len(s);i++{
+		fmt.Println(s[i])
+	}
+	for key,value:= range s{
+		fmt.Printf("%d:%d\n",key,value)
+	}
+
+	l:=map[int]string{
+		1:"Farzaneh",
+		2:"Rojina",
+	}
+
+	for _,value :=range l{
+		fmt.Printf("%v\n", value)
+	}
+
 	slice:=make([]string,0,2)
 	slice = append(slice, "a","b","c")
 	fmt.Println(slice)
@@ -105,6 +164,76 @@ func main() {
 	slice=append(slice[:1],slice[1:]...)
 	fmt.Println(slice)
 
+	// m:=make(map[int]string);
+	// m[10]="tem"
+	// m[12]="twelve"
+	m:=map[int]string{
+		10: "tem",
+		12: "twelve",
+	}
+
+	fmt.Println(m[12])
+	fmt.Println(len(m))
+	if _,exist:=m[13]; !exist{
+		fmt.Println("Not exist")
+	}else{
+		fmt.Println("exist")
+	}
+
+
+	jsonData := map[int]any{
+		1:map[string]any{
+			"id":1,
+			"name":"Farzaneh",
+		},
+		2:map[string]any{
+			"id":2,
+			"name":"Rojina",
+		},
+	}
+
+	jsonBytes , err := json.Marshal(jsonData)
+
+	if err !=nil{
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(jsonBytes))  // casting type - only when we change type from byte / string /int ... (known type) to string / int ... (known type)
+
+	fmt.Println(sum1([]int{1,2,3,4,5}))
+	fmt.Println(sum2(1,2,3,4,5))
+
+	ad1:=125
+	ad2:=&ad1
+	var ad3 **int
+	ad3 = &ad2
+	fmt.Println(&ad1,ad2,ad3)
+	fmt.Println(*ad2,*ad3,**ad3)   //Dereference
+
+	num:=12
+	multiply(&num,5)
+	fmt.Println(num)
+
+}
+
+func multiply(num *int, num2 int){
+	*num= *num * num2
+}
+
+func sum1(arr []int) int{
+	s:=0
+	for _,value:=range arr{
+		s+=value
+	}
+	return s
+}
+
+func sum2(arr ...int)int{     //Variadic Function - Slice should be as the "last" parameter 
+	s:=0
+	for _,value:=range arr{
+		s+=value
+	}
+	return s
 }
 
 
