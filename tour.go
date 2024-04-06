@@ -60,6 +60,13 @@ func main() {
 	p.changeName("Rojina")
 	fmt.Println(p)
 
+	defer fmt.Println("world")  // not executed until all function returns.
+	fmt.Println("hello")
+
+	xPtr := new(int) //new takes a type as an argument, allocates enough memory to fit a value of that type and returns a "pointer" to it.
+	*xPtr = 1
+	fmt.Println(xPtr,*xPtr)
+
 	g := 0.867 + 0.5i // complex128
 	d:=g   //  d's type is inferred from g
 	fmt.Printf("%T \n",d)
